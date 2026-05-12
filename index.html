@@ -3,68 +3,138 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>PHƯỚC CASINO - PRO GO88</title>
+  <title>PHƯỚC CASINO - FINAL OPTIMIZED</title>
 
   <style>
-    :root { --gold: #ffd700; --gold-dark: #b8860b; --bg: #0f0f0f; }
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; user-select: none; -webkit-user-select: none; }
-    body { background: var(--bg); color: white; height: 100vh; width: 100vw; display: flex; justify-content: center; align-items: center; overflow: hidden; }
-
-    #rotate-warning { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 9999; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+    :root { 
+      --gold: #ffd700; 
+      --gold-dark: #bf953f; 
+      --dark-emerald: #064e3b; 
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial Black', sans-serif; user-select: none; }
+    
+    #rotate-warning { 
+      display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+      background: #000; z-index: 9999; color: var(--gold);
+      flex-direction: column; justify-content: center; align-items: center; text-align: center;
+    }
     @media screen and (orientation: portrait) { #rotate-warning { display: flex; } }
 
-    .container { width: 98vw; height: 95vh; background: radial-gradient(circle, #2c2c2c 0%, #000 100%); border: 2px solid var(--gold); border-radius: 20px; padding: 10px; display: flex; flex-direction: column; position: relative; }
-    .top-bar { display: flex; justify-content: space-between; align-items: center; height: 12%; }
-    .user-info { background: rgba(0,0,0,0.6); padding: 5px 15px; border-radius: 20px; border: 1px solid var(--gold); color: var(--gold); font-weight: bold; font-size: 1.2rem; }
+    body { background: #000; color: white; height: 100vh; width: 100vw; display: flex; justify-content: center; align-items: center; overflow: hidden; }
 
-    .main-game { flex: 1; display: flex; justify-content: space-between; align-items: center; }
-    .bet-side { width: 28%; height: 75%; border-radius: 15px; display: flex; flex-direction: column; justify-content: center; align-items: center; cursor: pointer; transition: 0.1s; border: 3px solid rgba(255,255,255,0.1); }
-    .side-name { font-size: 3.5rem; font-weight: 900; text-shadow: 2px 2px 10px #000; }
-    .red { background: linear-gradient(180deg, #e74c3c, #c0392b); } /* Tài bên trái */
-    .green { background: linear-gradient(180deg, #2ecc71, #27ae60); } /* Xỉu bên phải */
-    .bet-tag { background: rgba(0,0,0,0.8); padding: 4px 12px; border-radius: 8px; color: var(--gold); margin-top: 8px; font-weight: bold; font-size: 0.9rem; border: 1px solid var(--gold); }
+    .container { 
+      width: 98vw; height: 95vh; 
+      background: radial-gradient(circle, #4a0000 0%, #1a0000 100%); 
+      border: 4px double var(--gold); border-radius: 30px; padding: 10px; 
+      display: flex; flex-direction: column; position: relative;
+      transform: scale(0.8); /* Tổng thể giảm 20% */
+      box-shadow: 0 0 30px rgba(255, 215, 0, 0.2);
+    }
+    
+    .top-bar { display: flex; justify-content: space-between; align-items: center; height: 10%; padding: 0 20px; }
+    .user-info { 
+      background: linear-gradient(135deg, #000, #222); 
+      padding: 5px 20px; border-radius: 30px; 
+      border: 2px solid var(--gold); color: var(--gold); 
+      font-weight: bold; font-size: 1.3rem;
+    }
 
-    .center-bowl { width: 35%; display: flex; flex-direction: column; align-items: center; }
-    .circle-area { width: 24vh; height: 24vh; background: #1a1a1a; border-radius: 50%; border: 4px solid #444; position: relative; display: flex; justify-content: center; align-items: center; }
-    .bowl { width: 24.5vh; height: 24.5vh; background: radial-gradient(circle at 30% 30%, #666, #111); border-radius: 50%; position: absolute; z-index: 10; cursor: grab; touch-action: none; }
-    .dice-container { display: none; gap: 8px; z-index: 5; }
-    .dice { width: 4.5vh; height: 4.5vh; background: white; border-radius: 6px; position: relative; box-shadow: inset 0 0 5px #000; }
-    .dot { width: 0.8vh; height: 0.8vh; background: #222; border-radius: 50%; position: absolute; }
+    .main-game { flex: 1; display: flex; justify-content: space-between; align-items: center; padding: 0 10px; }
+    .side { width: 32%; text-align: center; display: flex; flex-direction: column; align-items: center; }
+    
+    .side-name { 
+      font-size: 6.5rem; font-weight: 900; 
+      color: #ffffff;
+      text-shadow: 0 1px 0 #bbb, 0 2px 0 #aaa, 0 3px 0 #999, 0 4px 0 #888, 0 5px 0 #777, 0 10px 10px rgba(0,0,0,0.5);
+      letter-spacing: -5px; line-height: 1; margin-bottom: 5px;
+    }
 
-    .timer-text { font-size: 2rem; font-weight: bold; color: var(--gold); margin: 8px 0; }
-    .nan-timer { color: #ff6666; font-size: 1.2rem; display: none; }
+    .bet-amount-display { 
+      background: rgba(0,0,0,0.8); border: 2px solid var(--gold-dark); border-radius: 20px; 
+      padding: 8px; color: var(--gold); font-size: 1.6rem; width: 100%; max-width: 220px;
+      font-family: 'Courier New', monospace; font-weight: bold; margin-bottom: 8px;
+    }
 
-    .soi-cau-container { width: 100%; height: 20%; background: rgba(0,0,0,0.4); border-radius: 10px; margin-top: 10px; padding: 5px; border: 1px solid #333; }
-    .cau-list { display: flex; gap: 4px; overflow-x: hidden; height: 100%; align-items: center; }
-    .cau-item { width: 25px; height: 25px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 10px; font-weight: bold; flex-shrink: 0; }
+    /* Chữ CƯỢC nằm dưới số tiền */
+    .bet-label {
+      font-size: 2rem; color: var(--gold); cursor: pointer;
+      text-shadow: 2px 2px 4px #000;
+      padding: 4px 25px; border: 1px solid rgba(255, 215, 0, 0.3); border-radius: 12px;
+      background: rgba(0,0,0,0.3); transition: 0.1s;
+    }
+    .bet-label:active { transform: scale(0.9); background: var(--gold); color: #000; }
 
-    .btn-gold { background: linear-gradient(180deg, var(--gold), var(--gold-dark)); color: black; border: none; padding: 8px 16px; border-radius: 8px; font-weight: bold; cursor: pointer; text-transform: uppercase; font-size: 0.9rem; }
-    #napBox, #betBox { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #222; padding: 20px; border-radius: 15px; z-index: 100; border: 2px solid var(--gold); display: none; width: 280px; }
-    input { padding: 10px; border-radius: 8px; border: none; text-align: center; width: 100%; margin-bottom: 10px; font-size: 1.1rem; background: #333; color: white; }
+    .center-bowl { width: 34%; display: flex; flex-direction: column; align-items: center; position: relative; }
+    .circle-area { 
+      width: 42vh; height: 42vh; background: rgba(0,0,0,0.3); 
+      border-radius: 50%; border: 6px double var(--gold-dark); 
+      position: relative; display: flex; justify-content: center; align-items: center; 
+    }
+    .bowl { 
+      width: 43vh; height: 43vh; 
+      background: radial-gradient(circle at 35% 35%, #555, #111); 
+      border-radius: 50%; position: absolute; z-index: 10; cursor: grab; touch-action: none; 
+      box-shadow: 0 15px 30px rgba(0,0,0,0.7); border: 2px solid #333;
+    }
+    
+    .timer-floating {
+      position: absolute; z-index: 20; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 4rem; color: var(--gold); font-weight: bold;
+      text-shadow: 0 0 20px #000, 0 0 10px #000; pointer-events: none;
+    }
+
+    .dice-container { display: none; flex-wrap: wrap; width: 14vh; justify-content: center; gap: 10px; z-index: 5; }
+    .dice { width: 6vh; height: 6vh; background: #fff; border-radius: 8px; position: relative; }
+    .dot { width: 1.2vh; height: 1.2vh; background: #cc0000; border-radius: 50%; position: absolute; }
+
+    /* Lịch sử soi cầu tăng chiều rộng 10% */
+    .soi-cau-container { 
+      width: 90%; height: 45px; background: rgba(0,0,0,0.7); 
+      border-radius: 25px; padding: 0 15px; border: 1px solid var(--gold-dark); 
+      margin: 8px auto; display: flex; align-items: center; justify-content: center;
+      gap: 10px; overflow: hidden;
+    }
+    .cau-item { width: 24px; height: 24px; border-radius: 50%; font-size: 11px; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0; }
+    .cau-tai { background: #000; color: #fff; border: 1px solid #fff; }
+    .cau-xiu { background: #fff; color: #000; border: 1px solid #000; }
+
+    /* Chip giảm kích thước 20% (~48px) */
+    .chip-container { display: flex; justify-content: center; gap: 12px; margin-bottom: 10px; height: 12%; align-items: center; }
+    .chip { 
+      width: 48px; height: 48px; border-radius: 50%; 
+      display: flex; justify-content: center; align-items: center; 
+      font-size: 0.65rem; font-weight: bold; cursor: pointer; color: #fff; 
+      border: 2px solid rgba(255,255,255,0.2); 
+      background: radial-gradient(circle, #065f46 0%, #064e3b 100%); 
+      box-shadow: 0 4px 8px rgba(0,0,0,0.5); transition: 0.2s;
+    }
+    .chip.selected { border: 2px solid var(--gold); box-shadow: 0 0 12px var(--gold); transform: translateY(-3px); }
+
+    #betStatus { height: 30px; font-weight: bold; color: var(--gold); font-size: 1.5rem; margin-top: 10px; text-align: center;}
   </style>
 </head>
 <body>
 
-  <div id="rotate-warning">
-    <h2>VUI LÒNG XOAY NGANG MÀN HÌNH</h2>
-    <p>Để bắt đầu trải nghiệm Casino chuyên nghiệp</p>
-  </div>
+  <div id="rotate-warning"><h1>XOAY NGANG MÀN HÌNH</h1></div>
 
   <div class="container">
     <div class="top-bar">
       <div class="user-info">💰 <span id="coin">0</span></div>
-      <h2 style="color: var(--gold); font-size: 1.5rem;">PHƯỚC GO88</h2>
-      <button class="btn-gold" onclick="toggleNap()">NẠP TIỀN</button>
+      <h3 style="color: var(--gold); font-size: 1.1rem;">PHƯỚC CASINO ROYAL</h3>
+      <button onclick="addMoney()" style="background: var(--gold); border:none; padding: 4px 12px; border-radius: 6px; font-weight: bold; cursor: pointer;">NẠP TIỀN</button>
     </div>
 
     <div class="main-game">
-      <div class="bet-side red" onclick="chooseSide('TÀI')">
-        <span class="side-name">TÀI</span>
-        <div class="bet-tag">CƯỢC: <span id="redBet">0</span></div>
+      <div class="side">
+        <div class="side-name">TÀI</div>
+        <div class="bet-amount-display" id="redBet">0</div>
+        <div class="bet-label" onclick="confirmBet('TÀI')">CƯỢC</div>
       </div>
 
       <div class="center-bowl">
         <div class="circle-area">
+          <div class="timer-floating" id="timerText">30</div>
           <div class="bowl" id="bowl"></div>
           <div class="dice-container" id="diceContainer">
             <div class="dice" id="d1"></div>
@@ -72,179 +142,136 @@
             <div class="dice" id="d3"></div>
           </div>
         </div>
-        <div class="timer-text" id="timerText">30s</div>
-        <div class="nan-timer" id="nanTimer">Nặn đi: 10s</div>
-        <div id="betStatus" style="height: 20px; font-weight: bold; margin-bottom: 5px;"></div>
+        <div id="betStatus"></div>
       </div>
 
-      <div class="bet-side green" onclick="chooseSide('XỈU')">
-        <span class="side-name">XỈU</span>
-        <div class="bet-tag">CƯỢC: <span id="greenBet">0</span></div>
+      <div class="side">
+        <div class="side-name">XỈU</div>
+        <div class="bet-amount-display" id="greenBet">0</div>
+        <div class="bet-label" onclick="confirmBet('XỈU')">CƯỢC</div>
       </div>
     </div>
 
-    <div class="soi-cau-container">
-      <div style="font-size: 0.7rem; color: var(--gold); margin-bottom: 3px;">SOI CẦU (20 VÁN GẦN NHẤT)</div>
-      <div class="cau-list" id="cauList"></div>
-    </div>
+    <div class="soi-cau-container" id="cauList"></div>
 
-    <div id="napBox">
-      <h3 style="color:var(--gold); margin-bottom:10px">NẠP TIỀN</h3>
-      <input type="number" id="napInput" placeholder="Nhập số tiền...">
-      <button class="btn-gold" style="width:100%" onclick="confirmNap()">XÁC NHẬN</button>
-    </div>
-    <div id="betBox">
-      <h3 id="betTitle" style="color:var(--gold); margin-bottom:10px">ĐẶT CƯỢC</h3>
-      <input type="number" id="betAmount" placeholder="Số tiền...">
-      <button class="btn-gold" style="width:100%" onclick="confirmBet()">XÁC NHẬN</button>
+    <div class="chip-container">
+      <div class="chip" onclick="selectChip(10000, this)">10K</div>
+      <div class="chip" onclick="selectChip(50000, this)">50K</div>
+      <div class="chip" onclick="selectChip(100000, this)">100K</div>
+      <div class="chip" onclick="selectChip(500000, this)">500K</div>
+      <div class="chip" onclick="selectChip(1000000, this)">1M</div>
+      <div class="chip" onclick="selectChip(10000000, this)">10M</div>
+      <div class="chip" style="background:#000; border-color:var(--gold)" onclick="selectChip('ALL', this)">ALL</div>
     </div>
   </div>
 
   <script>
-    let coins = 0, currentBet = 0, selectedSide = null, countdown = 30, nanCountdown = 10;
-    let canOpen = false, isNanned = false, currentResult = '', totalDice = 0, gameActive = false;
-    let bowlX = 0, bowlY = 0, startX = 0, startY = 0, isDragging = false;
-    let mainTimer = null, nanTimer = null;
+    let coins = 0, selectedAmount = 0, countdown = 30;
+    let redTotal = 0, greenTotal = 0, isNanned = false, canOpen = false;
+    let currentResult = '';
+    let bowlX = 0, bowlY = 0, isDragging = false, startX, startY;
+    let historyData = [];
 
     const format = (n) => n.toLocaleString();
+    document.getElementById('coin').innerText = format(coins);
 
-    function toggleNap() { document.getElementById('napBox').style.display = 'block'; }
-    function confirmNap() {
-      let val = parseInt(document.getElementById('napInput').value);
-      if (val > 0) { coins += val; document.getElementById('coin').innerText = format(coins); }
-      document.getElementById('napBox').style.display = 'none';
-      document.getElementById('napInput').value = '';
+    function selectChip(amt, el) {
+      if (countdown <= 3) return;
+      document.querySelectorAll('.chip').forEach(c => c.classList.remove('selected'));
+      el.classList.add('selected');
+      selectedAmount = amt;
     }
 
-    function chooseSide(side) {
-      if (countdown <= 5 || (selectedSide && selectedSide !== side)) return;
-      selectedSide = side;
-      document.getElementById('betTitle').innerText = "ĐẶT " + side;
-      document.getElementById('betBox').style.display = 'block';
-    }
-
-    function confirmBet() {
-      let val = parseInt(document.getElementById('betAmount').value);
-      if (val > 0 && val <= coins) {
-        currentBet += val; coins -= val;
-        document.getElementById('coin').innerText = format(coins);
-        document.getElementById(selectedSide === 'TÀI' ? 'redBet' : 'greenBet').innerText = format(currentBet);
-      }
-      document.getElementById('betBox').style.display = 'none';
+    function confirmBet(side) {
+      if (countdown <= 3) return;
+      if (selectedAmount === 0) return;
+      let amt = (selectedAmount === 'ALL') ? coins : selectedAmount;
+      if (amt <= 0 || amt > coins) return;
+      
+      coins -= amt;
+      if (side === 'TÀI') redTotal += amt;
+      else greenTotal += amt;
+      
+      document.getElementById('coin').innerText = format(coins);
+      document.getElementById('redBet').innerText = format(redTotal);
+      document.getElementById('greenBet').innerText = format(greenTotal);
     }
 
     function startNewGame() {
-      gameActive = true; canOpen = false; isNanned = false;
-      countdown = 30; nanCountdown = 10; currentBet = 0; selectedSide = null;
-      
+      countdown = 30; canOpen = false; isNanned = false;
+      redTotal = 0; greenTotal = 0;
       document.getElementById('redBet').innerText = '0';
       document.getElementById('greenBet').innerText = '0';
       document.getElementById('betStatus').innerText = '';
       document.getElementById('diceContainer').style.display = 'none';
-      document.getElementById('nanTimer').style.display = 'none';
-      
+      document.getElementById('timerText').style.display = 'block';
       let bowl = document.getElementById('bowl');
       bowl.style.transition = '0.5s'; bowl.style.transform = 'translate(0,0)';
       bowlX = 0; bowlY = 0;
 
-      const d = () => Math.floor(Math.random() * 6) + 1;
-      let d1 = d(), d2 = d(), d3 = d();
-      totalDice = d1 + d2 + d3;
-      currentResult = (d1===d2 && d2===d3) ? 'BỘ BA' : (totalDice >= 11 ? 'TÀI' : 'XỈU');
-      
-      const render = (id, n) => {
-        const el = document.getElementById(id); el.innerHTML = '';
-        const dots = { 1:[[40,40]], 2:[[15,15],[65,65]], 3:[[15,15],[40,40],[65,65]], 4:[[15,15],[65,15],[15,65],[65,65]], 5:[[15,15],[65,15],[40,40],[15,65],[65,65]], 6:[[15,15],[65,15],[15,40],[65,40],[15,65],[65,65]] };
-        dots[n].forEach(p => { let dot = document.createElement('div'); dot.className='dot'; dot.style.left=p[0]+'%'; dot.style.top=p[1]+'%'; el.appendChild(dot); });
-      };
-      render('d1', d1); render('d2', d2); render('d3', d3);
+      let d = [Math.floor(Math.random()*6)+1, Math.floor(Math.random()*6)+1, Math.floor(Math.random()*6)+1];
+      currentResult = (d[0]+d[1]+d[2] >= 11) ? 'TÀI' : 'XỈU';
+      d.forEach((val, i) => renderDice('d'+(i+1), val));
 
-      if(mainTimer) clearInterval(mainTimer);
-      mainTimer = setInterval(() => {
+      let timer = setInterval(() => {
         countdown--;
-        document.getElementById('timerText').innerText = countdown + "s";
+        document.getElementById('timerText').innerText = countdown;
         if (countdown <= 0) {
-          clearInterval(mainTimer);
-          document.getElementById('timerText').innerText = "NẶN!";
-          startNanPhase();
+          clearInterval(timer);
+          document.getElementById('timerText').innerText = "MỞ";
+          canOpen = true;
+          document.getElementById('diceContainer').style.display = 'flex';
         }
       }, 1000);
     }
 
-    function startNanPhase() {
-      canOpen = true;
-      document.getElementById('diceContainer').style.display = 'flex';
-      document.getElementById('nanTimer').style.display = 'block';
-      
-      nanTimer = setInterval(() => {
-        nanCountdown--;
-        document.getElementById('nanTimer').innerText = "Nặn đi: " + nanCountdown + "s";
-        if (nanCountdown <= 0 && !isNanned) {
-          clearInterval(nanTimer);
-          autoOpenBowl();
-        }
-      }, 1000);
-    }
-
-    function autoOpenBowl() {
-      let bowl = document.getElementById('bowl');
-      bowl.style.transition = '1s';
-      bowl.style.transform = 'translate(200px, -100px) rotate(45deg)';
-      finishGame();
+    function renderDice(id, n) {
+      const el = document.getElementById(id); el.innerHTML = '';
+      const dots = { 1:[[40,40]], 2:[[15,15],[65,65]], 3:[[15,15],[40,40],[65,65]], 4:[[15,15],[65,15],[15,65],[65,65]], 5:[[15,15],[65,15],[40,40],[15,65],[65,65]], 6:[[15,15],[65,15],[15,40],[65,40],[15,65],[65,65]] };
+      dots[n].forEach(p => { 
+        let dot = document.createElement('div'); dot.className='dot'; 
+        dot.style.left=p[0]+'%'; dot.style.top=p[1]+'%'; el.appendChild(dot); 
+      });
     }
 
     function finishGame() {
-      if (isNanned) return;
-      isNanned = true;
-      clearInterval(nanTimer);
-      document.getElementById('nanTimer').style.display = 'none';
+      if (isNanned) return; isNanned = true;
+      document.getElementById('timerText').style.display = 'none';
+      historyData.push(currentResult);
+      if (historyData.length > 20) historyData.shift();
+      const listEl = document.getElementById('cauList');
+      listEl.innerHTML = '';
+      historyData.forEach(res => {
+        let item = document.createElement('div');
+        item.className = `cau-item ${res === 'TÀI' ? 'cau-tai' : 'cau-xiu'}`;
+        item.innerText = res[0];
+        listEl.appendChild(item);
+      });
 
-      let win = selectedSide === currentResult;
-      if (selectedSide) {
-        if (win) {
-          // Tỉ lệ ăn 90% (1 ăn 1.9)
-          let profit = Math.floor(currentBet * 0.9);
-          let totalReturn = currentBet + profit;
-          coins += totalReturn;
-          document.getElementById('betStatus').innerText = "THẮNG +" + format(totalReturn);
-          document.getElementById('betStatus').style.color = "#00ff88";
-        } else {
-          document.getElementById('betStatus').innerText = "THUA -" + format(currentBet);
-          document.getElementById('betStatus').style.color = "#ff6666";
-        }
-        document.getElementById('coin').innerText = format(coins);
-      }
-
-      updateCau();
-      setTimeout(startNewGame, 5000); // 5 giây sau tự bắt đầu ván mới
-    }
-
-    function updateCau() {
-      let list = document.getElementById('cauList');
-      let color = currentResult === 'TÀI' ? '#e74c3c' : '#2ecc71';
-      let newItem = `<div class="cau-item" style="background:${color}">${currentResult[0]}</div>`;
-      list.innerHTML = newItem + list.innerHTML;
-      if (list.children.length > 20) list.lastElementChild.remove();
+      let win = 0;
+      if (redTotal > 0 && currentResult === 'TÀI') win = redTotal * 1.95;
+      if (greenTotal > 0 && currentResult === 'XỈU') win = greenTotal * 1.95;
+      if (win > 0) { coins += win; document.getElementById('betStatus').innerText = "WIN +" + format(win); }
+      document.getElementById('coin').innerText = format(coins);
+      setTimeout(startNewGame, 4000);
     }
 
     const bowlEl = document.getElementById('bowl');
     const onStart = (e) => { if (!canOpen || isNanned) return; isDragging = true; bowlEl.style.transition = 'none'; let ev = e.touches ? e.touches[0] : e; startX = ev.clientX - bowlX; startY = ev.clientY - bowlY; };
-    const onMove = (e) => { if (!isDragging) return; let ev = e.touches ? e.touches[0] : e; bowlX = ev.clientX - startX; bowlY = ev.clientY - startY; bowlEl.style.transform = `translate(${bowlX}px, ${bowlY}px) rotate(${bowlX/2}deg)`; };
+    const onMove = (e) => { if (!isDragging) return; let ev = e.touches ? e.touches[0] : e; bowlX = ev.clientX - startX; bowlY = ev.clientY - startY; bowlEl.style.transform = `translate(${bowlX}px, ${bowlY}px) rotate(${bowlX/4}deg)`; };
     const onEnd = () => {
-      if (isDragging) {
-        isDragging = false;
-        if (Math.abs(bowlX) > 60 || Math.abs(bowlY) > 60) finishGame();
-        else { bowlEl.style.transition = '0.3s'; bowlEl.style.transform = 'translate(0,0)'; bowlX = 0; bowlY = 0; }
+      if (!isDragging) return; isDragging = false;
+      if (Math.abs(bowlX) > 80 || Math.abs(bowlY) > 80) {
+        bowlEl.style.transition = '0.6s'; bowlEl.style.transform = `translate(${bowlX*2.5}px, ${bowlY*2.5}px)`;
+        finishGame();
+      } else {
+        bowlEl.style.transition = '0.3s'; bowlEl.style.transform = 'translate(0,0)'; bowlX = 0; bowlY = 0;
       }
     };
 
-    bowlEl.addEventListener('mousedown', onStart);
-    window.addEventListener('mousemove', onMove);
-    window.addEventListener('mouseup', onEnd);
-    bowlEl.addEventListener('touchstart', onStart);
-    window.addEventListener('touchmove', onMove, { passive: false });
-    window.addEventListener('touchend', onEnd);
-
+    bowlEl.addEventListener('mousedown', onStart); window.addEventListener('mousemove', onMove); window.addEventListener('mouseup', onEnd);
+    bowlEl.addEventListener('touchstart', onStart); window.addEventListener('touchmove', onMove, { passive: false }); window.addEventListener('touchend', onEnd);
+    function addMoney() { coins += 5000000; document.getElementById('coin').innerText = format(coins); }
     startNewGame();
   </script>
 </body>
